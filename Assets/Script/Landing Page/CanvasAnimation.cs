@@ -13,11 +13,9 @@ public class CanvasAnimation : MonoBehaviour
     Vector2 _textPoint;
     Vector2 _buttonPoint;
 
-    float timer;
-    float offset = 10f;
-    float delay = 0.5f;
+    float offset = 90f;
+    float delay = 0.2f;
     float speed = 0.2f;
-    Vector2 velocity = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -27,39 +25,44 @@ public class CanvasAnimation : MonoBehaviour
         _text = transform.Find("Text").GetComponent<RectTransform>();
         _button = transform.Find("Button").GetComponent<RectTransform>();
 
-        _logoPoint = new Vector2(_logo.anchoredPosition.x, _logo.anchoredPosition.y - offset);
-        _textPoint = new Vector2(_text.anchoredPosition.x, _text.anchoredPosition.y - offset);
-        _buttonPoint = new Vector2(_button.anchoredPosition.x, _button.anchoredPosition.y - offset);
+        _logoPoint = new Vector2(_logo.anchoredPosition.x, _logo.anchoredPosition.y + offset);
+        _textPoint = new Vector2(_text.anchoredPosition.x, _text.anchoredPosition.y + offset);
+        _buttonPoint = new Vector2(_button.anchoredPosition.x, _button.anchoredPosition.y + offset);
 
-        IntroAnimation();
+        StartCoroutine(IntroAnimation());
+        
     }
 
-    void IntroAnimation()
+    private IEnumerator IntroAnimation()
     {
         TransparentChange();
 
-        StartCoroutine(ObjectTransform());
-    }
-
-    void TransparentChange()
-    {
-        Color color = _transparent.color;
-        color.a = 1f;
-        timer = 1f;
-
-        while(timer <= Time.deltaTime)
-        {
-            _transparent.color = color;
-
-            color.a = color.a - 0.1f;
-
-            timer -= Time.deltaTime;
-        }
-    }
-
-    IEnumerator ObjectTransform()
-    {
         yield return new WaitForSeconds(delay);
-        _logo.position = Vector2.SmoothDamp(_logoPoint, _logo.position, ref velocity, speed);
+        StartCoroutine(MoveObject(_logo, _logoPoint));
+
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(MoveObject(_text, _textPoint));
+
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(MoveObject(_button, _buttonPoint));
+    }
+
+    private void TransparentChange()
+    {
+        
+        _transparent.CrossFadeAlpha(0f, 2f, false);
+    }
+
+    private IEnumerator MoveObject(RectTransform rectTransform, Vector2 targetPosition)
+    {
+        Vector2 currentVelocity = Vector2.zero;
+
+        while (Vector2.Distance(rectTransform.anchoredPosition, targetPosition) > 0.01f)
+        {
+            rectTransform.anchoredPosition = Vector2.SmoothDamp(rectTransform.anchoredPosition, targetPosition, ref currentVelocity, speed);
+            yield return null;
+        }
+
+        rectTransform.anchoredPosition = targetPosition;
     }
 }
