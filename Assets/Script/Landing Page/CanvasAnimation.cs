@@ -50,7 +50,7 @@ public class CanvasAnimation : MonoBehaviour
     private void TransparentChange()
     {
         
-        _transparent.CrossFadeAlpha(0f, 2f, false);
+        _transparent.CrossFadeAlpha(0f, 1.2f, false);
     }
 
     private IEnumerator MoveObject(RectTransform rectTransform, Vector2 targetPosition)
