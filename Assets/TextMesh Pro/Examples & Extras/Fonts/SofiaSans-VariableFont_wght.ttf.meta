@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3564ca140eade904083bfb0d5d09cd5f
+guid: fc64b9f678632ca44b3f712478bbab4e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,9 +9,8 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Roboto
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 4beb055f07aaff244873dec698d0363e, type: 3}
+  - Sofia Sans
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

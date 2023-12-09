@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class ComponentBehaviour : MonoBehaviour
+public class ObjectBehaviour : MonoBehaviour
 {
     [SerializeField] private Sprite[] _sprite;
 
