@@ -45,11 +45,13 @@ public class CanvasAnimation : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
         StartCoroutine(MoveObject(_button, _buttonPoint));
+
+        yield return new WaitForSeconds(delay*2);
+        _transparent.enabled = false;
     }
 
     private void TransparentChange()
     {
-        
         _transparent.CrossFadeAlpha(0f, 1.2f, false);
     }
 
