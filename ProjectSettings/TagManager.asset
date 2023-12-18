@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Organik
   - Anorganik
+  - B3
+  - Canvas
   layers:
   - Default
   - TransparentFX

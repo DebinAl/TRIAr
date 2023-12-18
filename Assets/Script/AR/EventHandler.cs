@@ -8,6 +8,7 @@ public class EventHandler : MonoBehaviour
     public event Action<string> OnPressed;
     private void Awake()
     {
+        Debug.Log("Awake");
         Instance = this; 
     }
 

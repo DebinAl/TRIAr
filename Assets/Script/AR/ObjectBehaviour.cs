@@ -2,41 +2,8 @@ using UnityEngine;
 
 public class ObjectBehaviour : MonoBehaviour
 {
-    [SerializeField] private Sprite[] _sprite;
-
-    private Vector3 _cameraPos;
-    private SpriteRenderer _spriteRenderer;
-
-    private void Awake()
-    {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
     private void Start()
     {
-        EventHandler.Instance.OnPressed += ChangePage;
-    }
-
-    private void Update()
-    {
-        _cameraPos = Camera.main.transform.forward;
-        transform.LookAt(_cameraPos);
-    }
-
-    public void ChangePage(string obj)
-    {
-        Debug.Log("ChangePage() Invoked");
-        Debug.Log($"Name: {tag}, String: {obj}");
-        if (_spriteRenderer != null && CompareTag(obj))
-        {
-            if(_spriteRenderer.sprite == _sprite[0])
-            {
-                _spriteRenderer.sprite = _sprite[1];
-            }
-            else
-            {
-                _spriteRenderer.sprite = _sprite[0];
-            }
-        }
+        transform.rotation = Quaternion.Euler(90f, 0f, 0f); 
     }
 }
